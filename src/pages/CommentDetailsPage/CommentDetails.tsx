@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { CommentsList } from "../../components/CommentsList.tsx/CommentsLIst"
+import { CommentsList } from "../../components/CommentsList/CommentsLIst"
 
 interface Props {
 }

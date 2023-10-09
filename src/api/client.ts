@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://http://localhost:8000';
+export const BASE_URL = 'http://localhost:8000';
 
 type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 

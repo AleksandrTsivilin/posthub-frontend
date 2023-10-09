@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CommentInfo } from '../../types/commentInfo'
-import { CommentItem } from '../CommentItem.tsx/CommentItem'
+import { CommentItem } from '../CommentItem/CommentItem'
 
 export const CommentsList = () => {
     const [ comments ] = useState<CommentInfo []>([]);

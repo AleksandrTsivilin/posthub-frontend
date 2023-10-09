@@ -1,0 +1,14 @@
+.CommentsPage__title-container {
+    margin-bottom: 30px;
+}
+
+.CommentsPage__action-block {
+    margin-bottom: 10px;
+}
+
+.CommentsPage__message {
+    font-style: italic;
+    font-size: 12px;
+    color: red;
+    text-align: end;
+}
