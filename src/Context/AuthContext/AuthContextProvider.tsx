@@ -10,14 +10,16 @@ interface Props {
 export const AuthProvider: FC<Props> = memo(({children}) => {
 
     const [isAuth, setIsAuth] = useState(false);
+    const [userName, setUserName] = useState<string>('');
     console.log(isAuth)
 
-    // const setAuth = () => {console.log('setAuth'); setIsAuth(true)};
  
     const value: AuthStateProps = useMemo(() => ({
         isAuth,
-        setIsAuth
-      }), [ isAuth]);
+        setIsAuth,
+        userName, 
+        setUserName
+      }), [ isAuth, userName]);
   
     
       

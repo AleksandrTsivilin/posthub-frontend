@@ -1,0 +1,54 @@
+.AddCommentForm__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.AddCommentForm {
+    width: 50%;
+}
+
+.AddCommentForm__tools-wrapper {
+    margin-bottom: 30px;
+}
+
+.AddCommentForm__tools {
+    display: flex;
+    justify-content: end;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #1f2937;
+    margin-bottom: 6px;
+}
+
+.AddCommentForm__tools-info {
+    font-size: 12px;
+    color: #1f2937;
+}
+
+.AddCommentForm__tools-item {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.AddCommentForm__tools-icon {
+    color: #fff;
+    cursor: pointer;
+}
+
+.AddCommentForm__tools-item:hover {
+    background-color: #4b5563;
+}
+
+.AddCommentForm__tools-item:active {
+    background-color: #030712;
+}
+
+.AddCommentForm__loader-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+}

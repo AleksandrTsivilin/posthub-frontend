@@ -1,9 +1,12 @@
+import { User } from "./user"
+
 export interface CommentInfo {
     id: number,
-    userName: string,
-    email: string,
+    user: User,
     text: string,
     children?: CommentInfo[]
     homePage?: string,
-    file?: any
+    fileUrl?: any,
+    createdAt: Date,
+    parent?: CommentInfo
 }

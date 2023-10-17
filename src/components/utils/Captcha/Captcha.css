@@ -1,0 +1,44 @@
+.Captcha-container {
+    display: flex;
+    width: 100%;
+    gap: 5px;
+}
+
+.Captcha__svg-container {
+    flex: 1;
+
+}
+
+.Captcha__svg-label {
+    display: block;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+
+.Captcha__svg {
+    width: 100%;  
+    background-color: #fef3c7;
+    box-sizing: border-box;
+    padding: 1px;
+    border-radius: 2px;
+}
+
+
+
+
+.Captcha__input {
+    flex: 1;
+}
+
+.border-red {
+    border-color: red;
+}
+
+.error-text {
+    color: red;
+    font-size: 10px;
+}

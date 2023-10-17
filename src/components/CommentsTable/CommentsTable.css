@@ -1,17 +1,12 @@
 .Comments-Table {
     border-collapse: collapse;
     width: 100%;
+    color: #1f2937;
+    margin-bottom: 30px;
 }
 
-.Comments-Table__header {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
-    color: white;
-}
 
-.Comments-Table__header, .Comments-Table__ceil {
+.Comments-Table__ceil {
     border: 1px solid #ddd;
     padding: 8px;
 }
@@ -29,10 +24,21 @@
 }
 
 
-.Comments-Table__message {
-    text-align: center;
+.Comments-Table__loader {
+    display: flex;
+    justify-content: center;
 }
 
-.error-message {
-    color: red
+
+.Comments-Table__message {
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.Comments-Table__comment {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
 }

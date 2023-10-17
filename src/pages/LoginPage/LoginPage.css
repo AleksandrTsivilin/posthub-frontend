@@ -1,0 +1,24 @@
+.LoginForm__loader-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+}
+.LoginForm__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.LoginForm {
+    width: 30%;
+}
+
+.LoginForm__checkbox {
+    display: flex;
+    align-items: center;
+    color: #1f2937;
+    font-size: 12px;
+    margin-bottom: 15px;
+}

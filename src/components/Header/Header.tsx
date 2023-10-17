@@ -1,10 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { Button } from '../Button/Button';
+import { Button } from '../utils/Button/Button';
 import './Header.css';
 import { useAuthContext } from '../../Context/AuthContext/useAuthContext';
 
 export const Header = () => {
-    const { isAuth, setIsAuth } = useAuthContext();
+    const { isAuth, setIsAuth, userName } = useAuthContext();
     const navigate = useNavigate();
 
     return (
@@ -13,9 +13,12 @@ export const Header = () => {
                 Comments
             </Link>
             
-            {isAuth 
-                ? ( <Button text='sign out' onClick={() => setIsAuth(false)} /> ) 
-                : ( <Button text='sign in' onClick={() => {navigate('/login')} } /> )}
+            <div className='Header__actions'>
+                {isAuth && <p>Hello {userName}</p>}
+                {isAuth 
+                    ? ( <Button text='sign out' onClick={() => setIsAuth(false)} /> ) 
+                    : ( <Button text='sign in' onClick={() => {navigate('/login')} } /> )}
+            </div>
             
         </div>
     )

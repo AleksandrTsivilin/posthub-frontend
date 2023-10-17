@@ -4,15 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './Context/AuthContext/AuthContextProvider';
+import { WebsocketProvider } from './Context/WebsocketContext/WebsocketContextProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <WebsocketProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </WebsocketProvider>
   </React.StrictMode>
 );
 

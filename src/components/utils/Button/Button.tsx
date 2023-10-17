@@ -10,17 +10,20 @@ type Props = {
 
 export const Button: FC<Props> = ({
     text, 
-    position = 'start', 
+    position, 
     children,
     ...buttonAttrs
 }) => {
     return (
         <div className={classNames('Button-container', {
+            'start': position === 'start',
             'center': position === 'center',
-            'end': position === 'end'
+            'end': position === 'end',
         })}>
             <button 
-                className="Button"
+                className={classNames('Button', {
+                    'full': !position
+                })}
                 {...buttonAttrs}
             >
                 {text || children}

@@ -1,0 +1,108 @@
+.Pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.Pagination__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 16px;
+}
+
+.Pagination__item {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+    color: #1f2937;
+    border: 1px solid #1f2937;
+    font-weight: 600;
+}
+
+.Pagination__item--disabled {
+  opacity: 30%;
+  border-color: rgba(31, 41, 55, 0.3);
+}
+
+.Pagination__item--selected {
+  background-color: #1f2937;
+  color: #fff;
+}
+
+/* .Pagination__icon {
+  color: #1f2937;
+ 
+} */
+
+/* .Pagination__icon-disabled {
+  opacity: 30%;
+  border-color: rgba(31, 41, 55, 0.3);
+} */
+
+a {
+    text-decoration: none;
+}
+
+
+/* .Pagination {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+
+  @include onTablet {
+    justify-content: center;
+  }
+
+  &__list {
+    display: none;
+
+    @include onTablet {
+      display: flex;
+      gap: 8px;
+    }
+  }
+
+  &__count {
+    @extend %h4;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include onTablet {
+      display: none;
+    }
+  }
+
+  &__item {
+    @include square(32px);
+    @extend %buttons;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $gray-icons-placeholders;
+    transition: border $default-transition;
+
+    &:hover {
+      border-color: $gray-primary;
+    }
+
+    &--selected {
+      color: $white-color;
+      background-color: $gray-primary;
+      border-color: $gray-primary;
+    }
+
+    &--disabled {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+} */

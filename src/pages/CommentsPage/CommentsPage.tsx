@@ -1,14 +1,13 @@
 import { CommentsTable } from '../../components/CommentsTable/CommentsTable';
-import { Button } from '../../components/Button/Button';
+import { Button } from '../../components/utils/Button/Button';
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../../Context/AuthContext/useAuthContext';
 import './CommentsPage.css';
-import { Title } from '../../components/Title/Title';
+import { Title } from '../../components/utils/Title/Title';
 
 
 export const CommentsPage = () => {
     const navigate = useNavigate();
-    const {isAuth} = useAuthContext();
+   
 
     return (
         <>
@@ -17,14 +16,14 @@ export const CommentsPage = () => {
             </div>      
 
             <div className='CommentsPage__action-block'>
-                {isAuth ? (<Button 
+                <Button 
                     text='add comment' 
                     onClick={() => navigate('/new-comment')} 
                     position='end'
-                />) : (<p className='CommentsPage__message'> * to add comment login</p>)   } 
+                />
             </div>
             
-            <CommentsTable />     
+            <CommentsTable />
         </>
     )
 }

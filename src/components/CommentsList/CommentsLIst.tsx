@@ -1,14 +1,18 @@
-import { useState } from 'react'
+import { FC } from 'react'
 import { CommentInfo } from '../../types/commentInfo'
-import { CommentItem } from '../CommentItem/CommentItem'
+import { CommentItem } from '../CommentItem/CommentItem';
 
-export const CommentsList = () => {
-    const [ comments ] = useState<CommentInfo []>([]);
+interface Props {
+    childrenComments?: CommentInfo[]
+}
+
+export const CommentsList: FC<Props> = ({childrenComments}) => {
+    console.log(childrenComments)
     return (
         <>
             <div>CommentsList</div>
-            {comments.map(comment => (
-                <CommentItem key={comment.id} comment={comment} />
+            {childrenComments?.map(comment => (                
+                <CommentItem key={comment.id} comment={comment} />                
             ))}
         </>
     )

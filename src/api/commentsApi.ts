@@ -1,15 +1,26 @@
+import { AxiosResponse } from "axios";
 import { CommentInfo } from "../types/commentInfo";
-import { client } from "./client";
+import client from ".";
+import { QueryAttrs } from "../types/queryAttrs";
+import { queryBuilder } from "../helpers/queryBuilder";
 
 
-export const getComments = async (): Promise<CommentInfo[]> => {
-  const response = await client.get<CommentInfo[]>('/');
+interface ResponseData {
+  count: number,
+  rows: CommentInfo[]
+}
 
-  return response;
+
+export const getComments = async ({...queryAttrs}: QueryAttrs): Promise<AxiosResponse<ResponseData>> => {
+  const queryString = queryBuilder({...queryAttrs});
+  
+  return await client.get<ResponseData>(`${queryString}`);
 };
 
-// export const getProductById = async (id: string): Promise<ProductInfo> => {
-//   const response = await client.get<ProductInfo>(`/products/${id}`);
+export const create = async (data: FormData): Promise<AxiosResponse<CommentInfo>> => {
+  return await client.post<CommentInfo>('/', data);
+};
 
-//   return response;
-// };
+export const getById = async (id: number): Promise<AxiosResponse<CommentInfo>> => {
+  return await client.get<CommentInfo>(`/${id}`);
+}

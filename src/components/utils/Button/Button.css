@@ -1,5 +1,6 @@
 .Button-container {
     display: flex;
+    
 }
 
 .Button {
@@ -16,7 +17,7 @@
     transition-timing-function: ease-in-out;
 }
 
-.Button:hover {
+.Button:hover:not([disabled]) {
     background-color: white;
     border-color: #04AA6D;
     color: #04AA6D;
@@ -28,4 +29,13 @@
 
 .end {
     justify-content: end;
+}
+
+.full {
+    width: 100%;
+}
+
+.Button:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
 }
