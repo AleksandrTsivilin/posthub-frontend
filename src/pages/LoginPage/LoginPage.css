@@ -8,11 +8,15 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 20px 0;
+     
+
 }
 
 .LoginForm {
-    width: 30%;
+    width: 40%;
+    padding: 20px 40px;  
+    box-sizing: border-box;
+    box-shadow: 5px 5px 10px #f3f4f6
 }
 
 .LoginForm__checkbox {

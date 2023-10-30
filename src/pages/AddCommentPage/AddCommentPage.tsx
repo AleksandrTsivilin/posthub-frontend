@@ -1,43 +1,40 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useAuthContext } from '../../Context/AuthContext/useAuthContext'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { create } from '../../api/commentsApi';
-import { CommentInfo } from '../../types/commentInfo';
 import { Title } from '../../components/utils/Title/Title';
 import { Button } from '../../components/utils/Button/Button';
 import { Captcha } from '../../components/utils/Captcha/Captcha';
 import { Loader } from '../../components/utils/Loader/Loader';
 import { Notify } from '../../components/Notify/Notify';
 import * as Yup from 'yup';
-import { TextArea } from '../../components/utils/TextArea/TextArea';
-import './AddCommentPage.css';
 import { TextField } from '../../components/utils/TextField/TextField';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBold, faCode, faItalic, faLink, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { Formik, Form } from 'formik';
+import {QuillField} from '../../components/utils/QuillField/QuillField';
+import { IconButton } from '../../components/utils/IconButton/IconButton';
+import './AddCommentPage.css';
 
 interface Props {
 }
 
 export const AddCommentPage: FC<Props> = () => {
 
-    const [comment, setComment] = useState<CommentInfo | null>(null);
     const [file, setFile] = useState<any>(null);
     const [error, setError] = useState<string>('');
     const [status, setStatus] = useState<'success' | 'error'>();
     const { isAuth } = useAuthContext();
     const navigate = useNavigate();
-    const [test, setTest] = useState('');
     const [parentId, setParentId] = useState<string | null>(null);
+    const [reloadCaptcha, setReloadCaptcha] = useState({});
     
 
-    const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
     const location = useLocation();
     
 
     useEffect(() => {
         if (!isAuth) {
-            navigate('/');
+            navigate('/login');
         }
 
         const state = location.state;
@@ -58,11 +55,16 @@ export const AddCommentPage: FC<Props> = () => {
         captcha: Yup.string().required('enter code'),
     }) ;
 
+    // const handleImage = useCallback( (file: any) => {
+    //     console.log(file, typeof file)
+    //     setFile(file) 
+    // }, []);
+
     const submitHandler = async (values: any, actions: any) => {
         try {
-            console.log('submit add new comment')
             const formData = new FormData();
             formData.append('text', values.text);
+            formData.append('captcha', values.captcha)
             if (file) {
                 formData.append('file', file);
             }
@@ -78,53 +80,33 @@ export const AddCommentPage: FC<Props> = () => {
             setStatus('error');
         } finally {
             actions.resetForm();
+            setReloadCaptcha({});
+            setFile(null);
         }
     }
 
 
-    const handleSubmit = (e: any) => {
 
-        e.preventDefault();
-        // if (!isReady) {
-        //     console.log('no connection');
-        //     return;
-        // }
-        // console.log(typeof content)
-        // let fileContent;
-        // if (content) {
-        //     const reader = new FileReader();
-        //     reader.readAsDataURL(content);
-        //     reader.onload = () => {console.log('onload'); fileContent = reader.result}
-        //     console.log(fileContent)
-        // }
-        
-        // send(JSON.stringify({
-        //     text: 'dsfdsfds',
-        //     content: fileContent
-        // }))
-    }
-    // const htmlContent = test;
+    // const handleFileChange = async (event: any) => {
+    //     const file = event.target.files[0];
+    //     setFile(file);
+    //     // const formData = new FormData();
+    //     // formData.append('text', 'my message');
+    //     // formData.append('file', file);
+    //     // formData.append('userId', '3');
 
-    const handleFileChange = async (event: any) => {
-        const file = event.target.files[0];
-        setFile(file);
-        // const formData = new FormData();
-        // formData.append('text', 'my message');
-        // formData.append('file', file);
-        // formData.append('userId', '3');
+    //     // const comment = await create(formData);
+    //     // console.log('created comment', comment)
+    //     // setComment(comment.data);
 
-        // const comment = await create(formData);
-        // console.log('created comment', comment)
-        // setComment(comment.data);
-
-        //send(formData);
-        // console.log('fetch post')
-        // fetch('http://localhost:8000', {
-        //     method: 'POST',
-        //     body: formData
-        // }).then(res => res.json()).then(res => console.log('res')).catch(e => console.log(e.message));
+    //     //send(formData);
+    //     // console.log('fetch post')
+    //     // fetch('http://localhost:8000', {
+    //     //     method: 'POST',
+    //     //     body: formData
+    //     // }).then(res => res.json()).then(res => console.log('res')).catch(e => console.log(e.message));
          
-    }
+    // }
 
     return (
         <>
@@ -146,6 +128,8 @@ export const AddCommentPage: FC<Props> = () => {
              <div>
             <Title title='Add comment' />
 
+            <IconButton icon='back' position='start' iconSize='sm' color='gray' onClick={() => navigate(-1)} />
+
             <Notify message={error} status={status} onClose={() => setError('')}/>
 
             <Formik
@@ -162,62 +146,12 @@ export const AddCommentPage: FC<Props> = () => {
 
                         <div className='AddCommentForm__container'>                                                
                             <Form className='AddCommentForm'>
-                                <div className='AddCommentForm__tools-wrapper'>
-                                    <ul className='AddCommentForm__tools'>
-                                        <li className='AddCommentForm__tools-item'>
-                                            <label htmlFor='file'>
-                                                <FontAwesomeIcon icon={faPaperclip} className='AddCommentForm__tools-icon' />
-                                                <input    
-                                                    id='file'
-                                                    hidden                                
-                                                    type='file' 
-                                                    accept='.jpg, .gif, .png, .txt'                                                
-                                                    onChange={handleFileChange}
-                                                />
-                                            </label>
-                                        </li>
-                                        
-                                        <li className='AddCommentForm__tools-item' >
-                                            <label htmlFor='text' >
-                                                <FontAwesomeIcon 
-                                                    icon={faCode} 
-                                                    className='AddCommentForm__tools-icon'
-                                                    onClick={() => {
-                                                        const prev = formik.values.text;
-                                                        setTest(`<strong>a</strong>`)
-                                                        formik.getFieldHelpers('text').setValue(prev + `<strong></strong>`);
-                                                        // textAreaRef?.current?.focus()
-                                                        if (textAreaRef?.current) {
-                                                            // textAreaRef.current.selectionStart = 5;
-                                                            // textAreaRef.current.selectionEnd = 8;
-                                                        }
-                                                    }} 
-                                                />
-                                            </label>
-                                        </li>
-                                        
-                                        <li className='AddCommentForm__tools-item'>
-                                            <FontAwesomeIcon icon={faLink} className='AddCommentForm__tools-icon' />
-                                        </li>
-                                        
-                                        <li className='AddCommentForm__tools-item'>
-                                            <FontAwesomeIcon icon={faItalic} className='AddCommentForm__tools-icon' />
-                                        </li>
-                                        
-                                        <li className='AddCommentForm__tools-item'>
-                                            <FontAwesomeIcon icon={faBold} className='AddCommentForm__tools-icon' />
-                                        </li>
-                                    </ul>
-                                    {file && <p className='AddCommentForm__tools-info'>* attached file {file.name}</p>}
-                                </div>
 
-                                <TextArea  
-                                    label='message' 
-                                    id='text'
+                               <QuillField 
+                                    label="leave your comment" 
+                                    onChangeFileInput={setFile} 
+                                    file={file}
                                     name='text' 
-                                    placeholder='Enter message'
-                                    rows={6}
-                                    invalid={!!formik.errors.text && formik.touched.text}
                                 />
 
                                 <TextField
@@ -232,6 +166,7 @@ export const AddCommentPage: FC<Props> = () => {
                                     name='captcha'
                                     placeholder='Enter code'
                                     invalid={!!formik.errors.captcha && formik.touched.captcha}
+                                    reload={reloadCaptcha}
                                 />
 
                                 <Button

@@ -14,12 +14,14 @@ import { getTokenData } from '../../helpers/jwt';
 import { TokenData } from '../../types/tokenData';
 import { UserAuthAttrs } from '../../types/userAuthAttrs';
 import './LoginPage.css';
+import { IconButton } from '../../components/utils/IconButton/IconButton';
 
 export const LoginPage = () => {
     const {setIsAuth, setUserName} = useAuthContext();
     const [isRegister, setIsRegister] = useState(false);
     const [error, setError] = useState<string>('');
     const [status, setStatus] = useState<'success' | 'error'>();
+    const [reloadCaptcha, setReloadCaptcha] = useState({})
     const navigate = useNavigate();
 
     const initialValues = {
@@ -42,8 +44,7 @@ export const LoginPage = () => {
         captcha: Yup.string().required('enter code'),
     }) ;
 
-    const submitHandler = async (values: any, actions: any) => {       
-
+    const submitHandler = async (values: any, actions: any) => {   
         try{
             const token = await auth(isRegister, {...values});
             const tokenData: TokenData = getTokenData(token.data.token);
@@ -55,6 +56,7 @@ export const LoginPage = () => {
             setError(error.message);
             setStatus('error');
         } finally {
+            setReloadCaptcha({});
             actions.resetForm();
         }
     };
@@ -79,6 +81,8 @@ export const LoginPage = () => {
     return (
         <div>
             <Title title={isRegister ? 'Registration' : 'Sign in'} />
+
+            <IconButton icon='back' position='start' iconSize='sm' color='gray' onClick={() => navigate(-1)} />
 
             <Notify message={error} status={status} onClose={() => setError('')}/>
 
@@ -130,6 +134,7 @@ export const LoginPage = () => {
                                     label='enter code'
                                     name='captcha'
                                     placeholder='Enter code'
+                                    reload={reloadCaptcha}
                                     invalid={!!formik.errors.captcha && formik.touched.captcha}
                                 />
 

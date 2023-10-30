@@ -8,7 +8,6 @@
     color: white;
     font-weight: bold;
     text-transform: uppercase;
-    padding: 8px 20px;
     border: 2px solid transparent;
     border-radius: 8px;
     cursor: pointer;
@@ -16,6 +15,21 @@
     transition-duration: 300ms;
     transition-timing-function: ease-in-out;
 }
+
+
+.Button-sm {
+    padding: 5px 12px;
+    font-size: 10px;
+}
+
+.Button-md {
+    padding: 8px 20px;
+}
+
+.Button-lg {
+    padding: 10px 25px;
+}
+
 
 .Button:hover:not([disabled]) {
     background-color: white;

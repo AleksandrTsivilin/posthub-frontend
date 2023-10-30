@@ -9,7 +9,8 @@ type Props = {
     label?: string,  
     name: string,
     placeholder?: string,
-    invalid?: boolean
+    invalid?: boolean, 
+    fieldSize?: 'sm' | 'md' | 'lg'
 } & React.InputHTMLAttributes<HTMLTextAreaElement>;
 
 export const TextField: FC<Props> = ({
@@ -18,11 +19,12 @@ export const TextField: FC<Props> = ({
     name,
     placeholder,
     invalid=false,
+    fieldSize='md',
     ...inputAttrs
 })  => {
     
     return (
-        <div className='TextField'>
+        <div className={`TextField-${fieldSize}`}>
 
             <FormFieldLabel 
                 label={label}
@@ -34,7 +36,9 @@ export const TextField: FC<Props> = ({
             <Field 
                 className={classNames(
                     'TextField__input', {
-                        'border-red': invalid
+                        'border-red': invalid,
+                        'TextField__input-md': fieldSize === 'md',
+                        'TextField__input-sm': fieldSize === 'sm'
                     }
                 )}
 

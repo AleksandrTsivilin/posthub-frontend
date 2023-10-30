@@ -16,10 +16,9 @@ export const WebsocketProvider: FC<Props> = memo(({children}) => {
   
     useEffect(() => {
       const socket = new WebSocket("ws://localhost:8000");
-      console.log('socket', socket)
   
-      socket.onopen = () => {console.log('onopen context'); setIsReady(true)};
-      socket.onclose = () => {console.log('onclose context'); setIsReady(false);}
+      socket.onopen = () => { setIsReady(true) };
+      socket.onclose = () => { setIsReady(false); }
       socket.onmessage = (event) => {console.log('onmessage', event.data); setComment(event.data)};
   
       ws.current = socket;
@@ -29,7 +28,6 @@ export const WebsocketProvider: FC<Props> = memo(({children}) => {
       };
     }, []);
 
-    console.log(ws.current)
 
 
     const value: WebSocketStateProps = useMemo(() => ({

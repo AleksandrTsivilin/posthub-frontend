@@ -1,0 +1,95 @@
+.Quill {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.Quill__link-container {
+    display: none;
+}
+
+
+.Quill__isOpenForm .Quill__link-container {
+    display: block;
+    position: absolute;
+    right: -40px;
+    top: 60px;
+}
+
+.Quill__error {
+    font-size: 10px;
+    color: red;
+    margin-bottom: 10px;
+}
+
+.Quill__info-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+}
+
+.Quill__info {
+    font-size: 10px;
+    color: #1f2937;
+    font-weight: bold;
+}
+
+.Quill__field {
+    margin-bottom: 6px;
+}
+
+
+.ql-toolbar {
+    background-color: #1f2937;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 6px;
+}
+
+.ql-editor:focus {
+    border: none;
+    border-bottom: 1px solid #22d3ee;
+    border-left: 1px solid #22d3ee;
+    border-right: 1px solid #22d3ee;
+    outline: none;
+}
+
+.Quill__border-error .ql-editor {
+    border: none;
+    border-bottom:1px solid red;
+    border-left:1px solid red;
+    border-right:1px solid red;
+}
+  
+.ql-toolbar .ql-stroke {
+    fill: none;
+    stroke: #fff;
+}
+
+.ql-toolbar .ql-fill {
+    fill: #fff;
+    stroke: none;
+}
+
+button:hover .ql-stroke,
+.ql-picker-label:hover .ql-stroke {
+  fill: none;
+  stroke: #3b82f6 ;
+}
+
+.ql-active .ql-stroke {
+  fill: none;
+  stroke: #3b82f6 ;
+}
+
+button:hover .ql-fill,
+.ql-picker-label:hover .ql-fill {
+  fill: #3b82f6 ;
+  stroke: none;
+}
+
+.ql-active .ql-fill {
+  fill: #3b82f6 ;
+  stroke: none;
+}
+

@@ -5,13 +5,15 @@ import './Button.css';
 type Props = {
     text?: string,
     children?: React.ReactElement
-    position?: 'start' | 'center' | 'end'
+    position?: 'start' | 'center' | 'end',
+    buttonSize?: 'sm' | 'md' | 'lg'
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export const Button: FC<Props> = ({
     text, 
     position, 
     children,
+    buttonSize='md',
     ...buttonAttrs
 }) => {
     return (
@@ -22,7 +24,10 @@ export const Button: FC<Props> = ({
         })}>
             <button 
                 className={classNames('Button', {
-                    'full': !position
+                    'full': !position,
+                    'Button-sm': buttonSize === 'sm',
+                    'Button-md': buttonSize === 'md',
+                    'Button-lg': buttonSize === 'lg'
                 })}
                 {...buttonAttrs}
             >

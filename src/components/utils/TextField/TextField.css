@@ -1,4 +1,12 @@
-.TextField {
+.TextField-sm {
+    margin-bottom: 15px;
+}
+
+.TextField-md {
+    margin-bottom: 30px;
+}
+
+.TextField-lg {
     margin-bottom: 30px;
 }
 
@@ -20,10 +28,19 @@
     display: block;
     width: 100%;
     box-sizing: border-box;
-    padding: 10px 12px;
     border-radius: 6px;
     border: 1px solid #1f2937;
     margin-bottom: 6px;
+}
+
+.TextField__input-md {
+    padding: 10px 12px;
+}
+
+.TextField__input-sm {
+    padding: 6px 3px;
+    font-size: 10px;
+
 }
 
 .border-red {

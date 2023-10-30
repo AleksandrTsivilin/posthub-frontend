@@ -5,7 +5,6 @@ import { AddCommentPage } from './pages/AddCommentPage/AddCommentPage';
 import { Layout } from './components/Layout/Layout';
 import { PrivateRoutes } from './components/PrivateRoutes/PrivateRoutes';
 import { LoginPage } from './pages/LoginPage/LoginPage';
-import { useEffect } from 'react';
 
 const router = createBrowserRouter([
   {
@@ -38,7 +37,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  
   return (
     <RouterProvider router={router} />
   );

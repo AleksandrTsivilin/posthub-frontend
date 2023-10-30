@@ -11,7 +11,6 @@ export const AuthProvider: FC<Props> = memo(({children}) => {
 
     const [isAuth, setIsAuth] = useState(false);
     const [userName, setUserName] = useState<string>('');
-    console.log(isAuth)
 
  
     const value: AuthStateProps = useMemo(() => ({

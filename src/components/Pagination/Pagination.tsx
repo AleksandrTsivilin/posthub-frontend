@@ -31,7 +31,6 @@ export const Pagination: FC<Props> = ({total}) => {
     setPages(getNumbers(total, LIMIT));
   }, [total]);
 
-  console.log(pages)
 
   const isFirstPage = currentPage <= 1;
   const isLastPage = currentPage >= pages.length;
